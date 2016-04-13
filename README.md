@@ -12,7 +12,7 @@ _Only linux installation guide because linux supremacy_
 
 Firstly, install the packages required:
 
-`apt-get install libatk-adaptor libgail-dev`
+`apt-get install libatk-adaptor libgail-dev libmagickcore-dev`
 
 Then, you need to install the gems required by the program.
 
