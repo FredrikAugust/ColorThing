@@ -83,7 +83,8 @@ Dark
 Then, to determine the best match, we can compare the two mean differences and select the smallest one, which in this case would be:
 
 ```
-Light(2.16) < Dark(223.66)
+Light    Dark
+2.16  <  223.66
 ```
 
 So that means that this color (according to the programs calculations) will most likely be a light color.
