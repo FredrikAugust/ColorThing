@@ -37,22 +37,24 @@ window.signal_connect("destroy") {
   Gtk.main_quit
 }
 
-def choose(type, guesser_obj, img, guess)
+def choose(type, guesser_obj, img, guess, color)
   guesser_obj.add_color(guesser_obj.current_color, type)
   # reload image
   img.file = "square.png"
   # hide the guessed answer
   guess.hide
+  # update color text
+  color.text = guesser_obj.current_color
 end
 
 # dark color selected
 button_dark.signal_connect("clicked") do
- choose("dark", guesser, img_color, text_guess)
+ choose("dark", guesser, img_color, text_guess, text_color)
 end
 
 # light color selected
 button_light.signal_connect("clicked") do
- choose("light", guesser, img_color, text_guess)
+ choose("light", guesser, img_color, text_guess, text_color)
 end
 
 button_guess.signal_connect("clicked") do
