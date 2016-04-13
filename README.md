@@ -8,9 +8,11 @@ The algorithm used for this is quite simple, and is therefor pretty inaccurate.
 
 _Only linux installation guide because linux supremacy_
 
+**You might need to execute some of the commands using super-user permissions**
+
 Firstly, install the packages required:
 
-`sudo apt-get install libatk-adaptor libgail-dev`
+`apt-get install libatk-adaptor libgail-dev libmagickcore-dev`
 
 Then, you need to install the gems required by the program.
 
