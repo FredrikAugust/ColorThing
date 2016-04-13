@@ -4,6 +4,22 @@ This is a quite simple program to guess whether the user thinks a color is dark 
 
 The algorithm used for this is quite simple, and is therefor pretty inaccurate.
 
+## Installation
+
+_Only linux installation guide because linux supremacy_
+
+Firstly, install the packages required:
+
+`sudo apt-get install libatk-adaptor libgail-dev`
+
+Then, you need to install the gems required by the program.
+
+This can be done by `cd`ing into the directory you downloaded the repo to, and then running `gem install bundler` if you don't have the `bundler` gem installed.
+
+When you're done with that you can run `bundle install`, and then you should be good to go.
+
+To run the program; simply type `ruby path/to/file.rb` or `chmod +x path/to/file.rb` and `./path/to/file.rb`.
+
 ## Algorithm
 
 So, to start off the program, you need to pass in some colors, and tell the program whether they are dark or light.
