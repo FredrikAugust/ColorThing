@@ -54,12 +54,12 @@ After that, it will find the mean RGB values for light and dark; so using the ex
 Light
   R mean of [255, 200] = 227.5
   G mean of [255, 255] = 255
-  N mean of [255, 220] = 237.5
+  B mean of [255, 220] = 237.5
 
 Dark
   R mean of [0, 20] = 10
   G mean of [0, 40] = 20
-  N mean of [0, 20] = 10
+  B mean of [0, 20] = 10
 ```
 
 After this; it finds the closest value in each of the groups. So if we provided an R value of `238`, it would choose `255` since that is closer to `238` than `200`.
