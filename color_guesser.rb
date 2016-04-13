@@ -61,7 +61,7 @@ module ColorGuesser
 
     def initialize
       # instanciate empty arrs
-      @light, @dark = {r: [], g: [], b:[]}, {r: [], g: [], b:[]}
+      @light, @dark = {r: [255], g: [255], b:[255]}, {r: [0], g: [0], b:[0]}
       @current_color = Color.random_color
       ColorSquare.new @current_color
     end
@@ -87,6 +87,8 @@ module ColorGuesser
           [v.mean, v.min_by{|x|(x-target_color).abs}].mean.diff(target_color)
         end.mean
       end.zip([:dark, :light]).map(&:reverse).to_h # convert back to hash
+      # example return:
+      # {light: 12, dark: 54}
     end
 
     def decide(color)

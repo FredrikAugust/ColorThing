@@ -6,6 +6,15 @@ require './color_guesser'
 # Setup login for ColorGuesser
 guesser = ColorGuesser::ColorGuesser.new
 
+def certainty(guesser_obj, color)
+  differences = guesser_obj.color_chance(ColorGuesser::Color.new(color))
+  certainty = differences.map do |k,v|
+    k.to_s + ": #{((1-v/differences.values.inject(&:+))*100).round}%"
+  end.join("\n")
+  differences = differences.min_by{|k,v|v}
+  "Guess: #{differences.first} with #{differences.last.round} error\n#{certainty}"
+end
+
 # Create window
 window = Gtk::Window.new
 
@@ -15,7 +24,6 @@ window.border_width = 10
 # Buttons
 button_light = Gtk::Button.new("_Light")
 button_dark = Gtk::Button.new("_Dark")
-button_guess = Gtk::Button.new("_Guess")
 
 # Image
 img_color = Gtk::Image.new("square.png")
@@ -30,7 +38,7 @@ button_box = Gtk::HBox.new(false, 0)
 text_color = Gtk::Label.new(guesser.current_color)
 
 # Guess text
-text_guess = Gtk::Label.new('Please answer some colors before using the guess function')
+text_guess = Gtk::Label.new(certainty(guesser, guesser.current_color))
 
 # Hooks
 window.signal_connect("destroy") {
@@ -42,7 +50,7 @@ def choose(type, guesser_obj, img, guess, color)
   # reload image
   img.file = "square.png"
   # hide the guessed answer
-  guess.hide
+  guess.text = certainty(guesser_obj, guesser_obj.current_color)
   # update color text
   color.text = guesser_obj.current_color
 end
@@ -55,14 +63,6 @@ end
 # light color selected
 button_light.signal_connect("clicked") do
  choose("light", guesser, img_color, text_guess, text_color)
-end
-
-button_guess.signal_connect("clicked") do
-  _color = ColorGuesser::Color.new(guesser.current_color)
-  text_guess.text = "My guess is: #{guesser.decide(_color)}.\n\
-Difference: \
-#{guesser.color_chance(_color).map{|k,v|"#{k}: #{v.to_i}"}}"
-  text_guess.show_now
 end
 
 # Add elems
@@ -78,8 +78,6 @@ main_box.pack_start(img_color)
 main_box.add(text_color)
 # light/dark buttons
 main_box.pack_start(button_box)
-# guess button
-main_box.pack_start(button_guess, true, true, 0)
 # guess text
 main_box.pack_start(text_guess, true, true, 0)
 
